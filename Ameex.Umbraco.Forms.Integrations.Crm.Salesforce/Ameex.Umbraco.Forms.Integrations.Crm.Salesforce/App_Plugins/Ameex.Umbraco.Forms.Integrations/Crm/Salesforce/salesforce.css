@@ -1,0 +1,12 @@
+﻿.status-msg-error {
+    color: red;
+}
+.status-msg-success {
+    color: green;
+}
+.mapping-btn {
+    margin-top: 10px;
+}
+.form-label{
+    margin-top: 10px;
+}
