@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ameex.Umbraco.Forms.Integrations.Crm.Salesforce", "Ameex.Umbraco.Forms.Integrations.Crm.Salesforce\Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.csproj", "{79980351-1949-4B9E-B0B5-EDEF085A6A1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.TestSite", "Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.TestSite\Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.TestSite.csproj", "{2A280405-1F6F-4A6A-AA90-751267298910}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crm", "Crm", "{9C969444-668E-4D3F-89D8-CFCF6584EA44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Salesforce", "Salesforce", "{536365FF-0D3A-47F0-9F17-BC9C19F80D4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79980351-1949-4B9E-B0B5-EDEF085A6A1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79980351-1949-4B9E-B0B5-EDEF085A6A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79980351-1949-4B9E-B0B5-EDEF085A6A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79980351-1949-4B9E-B0B5-EDEF085A6A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A280405-1F6F-4A6A-AA90-751267298910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A280405-1F6F-4A6A-AA90-751267298910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A280405-1F6F-4A6A-AA90-751267298910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A280405-1F6F-4A6A-AA90-751267298910}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79980351-1949-4B9E-B0B5-EDEF085A6A1A} = {536365FF-0D3A-47F0-9F17-BC9C19F80D4C}
+		{536365FF-0D3A-47F0-9F17-BC9C19F80D4C} = {9C969444-668E-4D3F-89D8-CFCF6584EA44}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {911FF788-92F7-4E31-B4AB-1CCA9B5C0B3A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ContentTargetFolders>.</ContentTargetFolders>
+    <Product>Ameex.Umbraco.Forms.Integrations.Crm.Salesforce</Product>
+    <PackageId>Ameex.Umbraco.Forms.Integrations.Crm.Salesforce</PackageId>
+    <Title>Ameex.Umbraco.Forms.Integrations.Crm.Salesforce</Title>
+    <Description>...</Description>
+    <PackageTags>umbraco plugin package</PackageTags>
+    <Company>Ameex Technologies Corp</Company>
+    <PackageIcon>Umbraco+Sf.jpg</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="10.1.0" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="10.1.0" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.1.0" />
+    <PackageReference Include="Umbraco.Forms.Core" Version="10.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+  <Content Include="App_Plugins\Ameex.Umbraco.Forms.Integrations\**">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <None Include="build\**">
+      <Pack>true</Pack>
+      <PackagePath>buildTransitive</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Umbraco+Sf.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

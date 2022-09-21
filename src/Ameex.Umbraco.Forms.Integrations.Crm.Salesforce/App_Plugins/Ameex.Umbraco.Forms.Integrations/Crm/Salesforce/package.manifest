@@ -1,0 +1,12 @@
+{
+  "name": "Ameex.Umbraco.Forms.Integrations.Crm.Salesforce",
+  "version": "1.0.0",
+  "allowPackageTelemetry": true,
+  "css": [
+    "~/App_Plugins/Ameex.Umbraco.Forms.Integrations/Crm/Salesforce/salesforce.css"
+  ],
+  "javascript": [
+    "~/App_Plugins/Ameex.Umbraco.Forms.Integrations/Crm/Salesforce/salesforce.component.js",
+    "~/App_Plugins/Ameex.Umbraco.Forms.Integrations/Crm/Salesforce/salesforce.resource.js"
+  ]
+}

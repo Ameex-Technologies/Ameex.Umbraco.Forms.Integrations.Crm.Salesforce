@@ -1,0 +1,93 @@
+<div>
+    <umb-loader class="-no-margin-left" ng-if="vm.loading">
+    </umb-loader>
+
+    <div ng-show="vm.authorizationStatus === 'OK'">
+        <p class="status-msg-success">Salesforce CRM account is connected. To disconnect: <umb-button type="button" button-style="action" ng-show="vm.authorizationStatus === 'OK'" action="vm.disconnect()" label="Disconnect"></umb-button></p>
+    </div>
+
+    <div ng-show="!vm.loading && vm.authorizationStatus !== 'OK'">
+        <p>Umbraco Forms is not configured with a Salesforce CRM account.</p>
+        <p class="status-msg-error">Status: {{vm.authorizationStatusMessage}}</p>
+        <p>
+            <label class="control-label">Hostname</label>
+            <input type="text" required class="-full-width-input" placeholder="Enter Hostname" ng-model="vm.accountSettings.host" />
+        </p>
+        <p>
+            <label class="control-label">Username</label>
+            <input type="text" required class="-full-width-input" placeholder="Enter Username" ng-model="vm.accountSettings.username" />
+        </p>
+        <p>
+            <label class="control-label">Password</label>
+            <input type="password" required class="-full-width-input" placeholder="Enter Password" ng-model="vm.accountSettings.password" />
+        </p>
+        <p>
+            <label class="control-label">Client Id</label>
+            <input class="-full-width-input" type="text" required placeholder="Enter client Id" ng-model="vm.accountSettings.clientId" />
+        </p>
+        <p>
+            <label class="control-label">Client Secret</label>
+            <input type="text" required class="-full-width-input" placeholder="Enter client secret" ng-model="vm.accountSettings.clientSecret" />
+        </p>
+        <p>
+            <label class="control-label">Token</label>
+            <input type="text" required class="-full-width-input" placeholder="Enter token" ng-model="vm.accountSettings.token" />
+        </p>
+        <p>
+            <label class="control-label">Api Version</label>
+            <input type="text" required class="-full-width-input" placeholder="Enter Api Version" ng-model="vm.accountSettings.apiVersion" />
+        </p>
+        <p><umb-button type="button" button-style="action" action="vm.authenticate()" label="Authenticate"></umb-button></p>
+    </div>
+
+    <div ng-show="vm.showSfObjects">
+
+        <div class="umb-forms-mappings">
+            <div class="umb-forms-mapping-header">
+                <div class="umb-forms-mapping-field -no-margin-left">Select Salesforce Object</div>
+            </div>
+            <select class="-full-width"
+                    ng-options="item.name as item.label for item in vm.objectList"
+                    ng-model="vm.selectedSfObject"
+                    ng-change="vm.getFieldsForMapping(vm.selectedSfObject, true)">
+            </select>
+        </div>
+
+        <div class="umb-forms-mappings" ng-show="vm.mapping.fields.length > 0">
+
+            <div class="umb-forms-mapping-header form-label">
+                <div class="umb-forms-mapping-field">Form Field</div>
+                <div class="umb-forms-mapping-field">Salesforce Field</div>
+                <div class="umb-forms-mapping-remove -no-margin-right"></div>
+            </div>
+
+            <div ng-repeat="mappingField in vm.mapping.fields">
+
+                <div class="umb-forms-mapping">
+                    <div class="umb-forms-mapping-field">
+                        <select class="-full-width"
+                                ng-options="field.id as field.value for field in vm.fields"
+                                ng-model="mappingField.formField"
+                                ng-change="vm.stringifyValue()">
+                        </select>
+                    </div>
+
+                    <div class="umb-forms-mapping-field">
+                        <select class="-full-width"
+                                ng-options="field.value as field.name for field in vm.sfObjectFields"
+                                ng-model="mappingField.objectField"
+                                ng-change="vm.stringifyValue()">
+                        </select>
+                    </div>
+
+                    <div class="umb-forms-mapping-remove -no-margin-right">
+                        <a href="" ng-click="vm.deleteMapping($index)"><i class="icon-trash color-red"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mapping-btn"><umb-button type="button" button-style="action" ng-show="vm.showMappingBtn" action="vm.addMapping()" label="Add mapping"></umb-button></div>
+    </div>
+
+</div>
