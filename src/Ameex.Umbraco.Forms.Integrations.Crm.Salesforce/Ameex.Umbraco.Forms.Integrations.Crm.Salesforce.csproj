@@ -5,10 +5,17 @@
     <Product>Ameex.Umbraco.Forms.Integrations.Crm.Salesforce</Product>
     <PackageId>Ameex.Umbraco.Forms.Integrations.Crm.Salesforce</PackageId>
     <Title>Ameex.Umbraco.Forms.Integrations.Crm.Salesforce</Title>
-    <Description>...</Description>
-    <PackageTags>umbraco plugin package</PackageTags>
+    <Description>This package allows you to connect your Umbraco forms to Salesforce objects and seamlessly transmit data to Salesforce.</Description>
+    <PackageTags>umbraco plugin package salesforce forms crm</PackageTags>
     <Company>Ameex Technologies Corp</Company>
     <PackageIcon>Umbraco+Sf.jpg</PackageIcon>
+    <Authors>Ameex Technologies Corp</Authors>
+    <RepositoryUrl>https://github.com/ameex-technologies/ameex.umbraco.forms.integrations.crm.salesforce</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +33,13 @@
     <None Include="build\**">
       <Pack>true</Pack>
       <PackagePath>buildTransitive</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

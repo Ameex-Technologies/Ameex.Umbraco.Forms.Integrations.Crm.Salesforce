@@ -10,10 +10,6 @@
         <p>Umbraco Forms is not configured with a Salesforce CRM account.</p>
         <p class="status-msg-error">Status: {{vm.authorizationStatusMessage}}</p>
         <p>
-            <label class="control-label">Hostname</label>
-            <input type="text" required class="-full-width-input" placeholder="Enter Hostname" ng-model="vm.accountSettings.host" />
-        </p>
-        <p>
             <label class="control-label">Username</label>
             <input type="text" required class="-full-width-input" placeholder="Enter Username" ng-model="vm.accountSettings.username" />
         </p>
@@ -28,14 +24,6 @@
         <p>
             <label class="control-label">Client Secret</label>
             <input type="text" required class="-full-width-input" placeholder="Enter client secret" ng-model="vm.accountSettings.clientSecret" />
-        </p>
-        <p>
-            <label class="control-label">Token</label>
-            <input type="text" required class="-full-width-input" placeholder="Enter token" ng-model="vm.accountSettings.token" />
-        </p>
-        <p>
-            <label class="control-label">Api Version</label>
-            <input type="text" required class="-full-width-input" placeholder="Enter Api Version" ng-model="vm.accountSettings.apiVersion" />
         </p>
         <p><umb-button type="button" button-style="action" action="vm.authenticate()" label="Authenticate"></umb-button></p>
     </div>

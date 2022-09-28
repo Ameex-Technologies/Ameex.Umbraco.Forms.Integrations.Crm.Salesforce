@@ -57,9 +57,13 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
                     Data = accountSettings,
                     Status = ApiStatus.Failed,
                     HttpStatusCode = System.Net.HttpStatusCode.Unauthorized,
-                    Message = string.Format(Constants.AutheticationFailedMessage, authenticationResponse?.ErrorDescription ?? Constants.SalesforceHostKeyIsNotSet)
+                    Message = string.Format(Constants.AutheticationFailedMessage, authenticationResponse?.ErrorDescription)
                 };
             }
+
+            _keyValueService.SetValue(Constants.SalesforceHost, authenticationResponse.InstanceUrl);
+            accountSettings = GetAccountSettings();
+
 
             return new SalesforceApiResponse()
             {
@@ -72,7 +76,7 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
 
         public async Task<SalesforceApiResponse> GetSalesforceObjectAsync(string objectName)
         {
-            var requestUri = new Uri(string.Format(Constants.GetObjectPropertiesEndpoit, accountSettings.Host, accountSettings.ApiVersion, objectName));
+            var requestUri = new Uri(string.Format(Constants.GetObjectPropertiesEndpoit, accountSettings.Host, Constants.ApiVersion, objectName));
             return await GetResponseAsync<SalesforceObject>(requestUri, HttpMethod.Get, HttpContentType.None, null, true);
         }
 
@@ -95,7 +99,7 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
                 var value = recordField.ValuesAsString(false);
                 sfObjectProperties.Add(field.ObjectField, value);
             }
-            var requestUri = new Uri(string.Format(Constants.PostObjectDataEndpoit, accountSettings.Host, accountSettings.ApiVersion, salesforceObjectRequest.ObjectName));
+            var requestUri = new Uri(string.Format(Constants.PostObjectDataEndpoit, accountSettings.Host, Constants.ApiVersion, salesforceObjectRequest.ObjectName));
             return await GetResponseAsync<SalesforceObject>(requestUri, HttpMethod.Post, HttpContentType.JsonContent, sfObjectProperties, true);
         }
 
@@ -106,9 +110,9 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
             {
                 return new SalesforceApiResponse()
                 {
-                    HttpStatusCode = System.Net.HttpStatusCode.InternalServerError,
-                    Status = ApiStatus.Failed,
-                    Message = "Salesforce objects are not configured in appsettings.json"
+                    Data = Constants.DefaultSalesforceObject.Split(","),
+                    HttpStatusCode = System.Net.HttpStatusCode.OK,
+                    Status = ApiStatus.Success
                 };
             }
 
@@ -158,9 +162,6 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
             _keyValueService.SetValue(Constants.SalesforcePassword, sfAccountSettings.Password);
             _keyValueService.SetValue(Constants.SalesforceClientId, sfAccountSettings.ClientId);
             _keyValueService.SetValue(Constants.SalesforceClientSecret, sfAccountSettings.ClientSecret);
-            _keyValueService.SetValue(Constants.SalesforceToken, sfAccountSettings.Token);
-            _keyValueService.SetValue(Constants.SalesforceApiVersion, sfAccountSettings.ApiVersion);
-            _keyValueService.SetValue(Constants.SalesforceHost, sfAccountSettings.Host);
         }
 
         private AccountSettings GetAccountSettings()
@@ -169,10 +170,8 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
             {
                 Username = _keyValueService.GetValue(Constants.SalesforceUsername),
                 Password = _keyValueService.GetValue(Constants.SalesforcePassword),
-                ApiVersion = _keyValueService.GetValue(Constants.SalesforceApiVersion),
                 ClientId = _keyValueService.GetValue(Constants.SalesforceClientId),
                 ClientSecret = _keyValueService.GetValue(Constants.SalesforceClientSecret),
-                Token = _keyValueService.GetValue(Constants.SalesforceToken),
                 Host = _keyValueService.GetValue(Constants.SalesforceHost)
             };
         }
@@ -250,9 +249,6 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
 
         private async Task<AuthenticationResponse> GetAccessToken()
         {
-            if (accountSettings.Host.IsNull())
-                return null;
-
             var authenticationRequest = new AuthenticationRequest()
             {
                 Grant_type = GrantType.Password.ToString().ToLower(),
@@ -262,7 +258,7 @@ namespace Ameex.Umbraco.Forms.Integrations.Crm.Salesforce.Services
                 Password = $"{accountSettings.Password}{accountSettings.Token}"
             };
 
-            var requestUri = new Uri(string.Format(Constants.GetAccessTokenEndpoint, accountSettings.Host));
+            var requestUri = new Uri(Constants.GetAccessTokenEndpoint);
             var httpRequestMessage = GetHttpRequestMessage(HttpMethod.Post, requestUri, authenticationRequest, HttpContentType.MultipartContent, false);
             var response = await SendAsync(httpRequestMessage);
 
