@@ -6,4 +6,4 @@ In order to connect your Umbraco forms with Salesforce, you should create the Co
 
 ## Available Integrations
 
-[Salesforcw](./src/Ameex.Umbraco.Forms.Integrations.Crm.Salesforce/) - a custom workflow allowing form form entries to be mapped to a salesforce lead record, and stored within the CRM platform.
+[Salesforce](./src/Ameex.Umbraco.Forms.Integrations.Crm.Salesforce/) - a custom workflow allowing form form entries to be mapped to a salesforce lead record, and stored within the CRM platform.
